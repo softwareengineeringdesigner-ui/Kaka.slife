@@ -1060,15 +1060,17 @@ function initScrollReveal() {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('revealed');
+        observer.unobserve(e.target); // unobserve after revealing
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
     el.classList.remove('revealed');
     observer.observe(el);
   });
 }
 /* ===== SCROLL REVEAL END ===== */
+
 
 /* ===== SCROLL EFFECTS (NAVBAR + SCROLL TOP) START ===== */
 function initScrollEffects() {
